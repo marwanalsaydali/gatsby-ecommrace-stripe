@@ -1,3 +1,8 @@
+// .env variables
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
@@ -13,6 +18,14 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
+    {
+    resolve: `gatsby-source-stripe`,
+    options: {
+      objects: ['Balance', 'BalanceTransaction', 'Product', 'ApplicationFee', 'Sku', 'Subscription'],
+      secretKey: 'stripe_secret_key_here',
+      downloadFiles: true,
+    }
+  },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
